@@ -1,0 +1,78 @@
+name: Package release
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Build channel
+        type: choice
+        options:
+          - development
+          - signed-and-notarized
+        default: development
+      universal:
+        description: Include Apple silicon and Intel
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: macos-latest
+    environment: release
+    env:
+      BUILD_NUMBER: ${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run checks
+        run: ./test.sh
+      - name: Configure signing
+        if: inputs.channel == 'signed-and-notarized'
+        env:
+          CERTIFICATE_B64: ${{ secrets.POMO_CERTIFICATE_P12_B64 }}
+          CERTIFICATE_PASSWORD: ${{ secrets.POMO_CERTIFICATE_PASSWORD }}
+          SIGNING_IDENTITY: ${{ secrets.POMO_SIGNING_IDENTITY }}
+          NOTARY_PRIVATE_KEY: ${{ secrets.POMO_NOTARY_PRIVATE_KEY }}
+          NOTARY_KEY_ID: ${{ secrets.POMO_NOTARY_KEY_ID }}
+          NOTARY_ISSUER_ID: ${{ secrets.POMO_NOTARY_ISSUER_ID }}
+        run: |
+          set -euo pipefail
+          for name in CERTIFICATE_B64 CERTIFICATE_PASSWORD SIGNING_IDENTITY NOTARY_PRIVATE_KEY NOTARY_KEY_ID NOTARY_ISSUER_ID; do
+            test -n "${!name}" || { echo "Missing required release secret: $name" >&2; exit 1; }
+          done
+          KEYCHAIN="$RUNNER_TEMP/pomo-release.keychain-db"
+          KEYCHAIN_PASSWORD="$(openssl rand -hex 32)"
+          echo "::add-mask::$KEYCHAIN_PASSWORD"
+          printf '%s' "$CERTIFICATE_B64" | base64 --decode > "$RUNNER_TEMP/certificate.p12"
+          printf '%s' "$NOTARY_PRIVATE_KEY" > "$RUNNER_TEMP/notary-key.p8"
+          chmod 600 "$RUNNER_TEMP/certificate.p12" "$RUNNER_TEMP/notary-key.p8"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security import "$RUNNER_TEMP/certificate.p12" -k "$KEYCHAIN" -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN" >/dev/null
+          xcrun notarytool store-credentials pomo-release --key "$RUNNER_TEMP/notary-key.p8" --key-id "$NOTARY_KEY_ID" --issuer "$NOTARY_ISSUER_ID" --keychain "$KEYCHAIN"
+          printf 'SIGNING_IDENTITY=%s\nSIGNING_KEYCHAIN=%s\nNOTARY_KEYCHAIN=%s\nNOTARY_PROFILE=pomo-release\n' "$SIGNING_IDENTITY" "$KEYCHAIN" "$KEYCHAIN" >> "$GITHUB_ENV"
+      - name: Package
+        env:
+          CHANNEL: ${{ inputs.channel }}
+          UNIVERSAL: ${{ inputs.universal }}
+        run: |
+          ARGS=(--output-dir "$PWD/dist/releases")
+          if [[ "$UNIVERSAL" == true ]]; then ARGS+=(--universal); fi
+          if [[ "$CHANNEL" == development ]]; then ARGS+=(--development); fi
+          ./script/package_release.sh "${ARGS[@]}"
+      - name: Upload verified packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: Pomo-${{ inputs.channel }}
+          path: dist/releases/*
+          if-no-files-found: error
+          retention-days: 30
+      - name: Remove signing material
+        if: always()
+        run: |
+          if [[ -f "$RUNNER_TEMP/pomo-release.keychain-db" ]]; then security delete-keychain "$RUNNER_TEMP/pomo-release.keychain-db"; fi
+          rm -f "$RUNNER_TEMP/certificate.p12" "$RUNNER_TEMP/notary-key.p8"

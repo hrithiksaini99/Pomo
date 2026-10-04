@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hrithiksaini99.github.io/Pomo/sitemap.xml

@@ -1,0 +1,38 @@
+name: Build and checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shell syntax
+        run: |
+          for script in build.sh test.sh script/*.sh; do bash -n "$script"; done
+      - name: Run timer checks
+        run: ./test.sh
+      - name: Build universal app
+        run: ./build.sh --universal
+      - name: Validate bundle
+        run: |
+          plutil -lint dist/Pomo.app/Contents/Info.plist
+          codesign --verify --strict --verbose=2 dist/Pomo.app
+          xcrun lipo dist/Pomo.app/Contents/MacOS/Pomo -verify_arch arm64
+          xcrun lipo dist/Pomo.app/Contents/MacOS/Pomo -verify_arch x86_64
+          test -s dist/Pomo.app/Contents/Resources/AppIcon.icns
+          test "$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' dist/Pomo.app/Contents/Info.plist)" = com.hrithik.pomo
+      - name: Create development archives
+        run: ./script/package_release.sh --universal --development
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Pomo-development-build
+          path: dist/releases/*
+          if-no-files-found: error
+          retention-days: 7

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafa">
+  <title>Pomo — Make room for deep work</title>
+  <meta name="description" content="A quiet, free Pomodoro timer for your Mac’s menu bar. Six thoughtful presets, an independent stopwatch, and a little more space to focus.">
+  <link rel="canonical" href="https://hrithiksaini99.github.io/Pomo/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pomo — Make room for deep work">
+  <meta property="og:description" content="Your focus, a little closer. A quiet Pomodoro timer that lives in your Mac’s menu bar.">
+  <meta property="og:url" content="https://hrithiksaini99.github.io/Pomo/">
+  <meta property="og:image" content="https://hrithiksaini99.github.io/Pomo/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The orange Pomo timer icon beside Make room for deep work.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pomo — Make room for deep work">
+  <meta name="twitter:description" content="A quiet, free Pomodoro timer for the Mac menu bar.">
+  <meta name="twitter:image" content="https://hrithiksaini99.github.io/Pomo/assets/social-card.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon-180.png">
+  <link rel="preload" href="fonts/manrope-regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav-island" aria-label="Main navigation">
+      <a class="brand" href="./" aria-label="Pomo home" aria-current="page"><img src="assets/logo-mark.svg" width="28" height="28" alt=""><span>Pomo</span></a>
+      <div class="desktop-links"><a href="#why-pomo">Why Pomo</a><a href="#how-it-works">How it works</a><a href="#questions">Questions</a></div>
+      <a class="button button-small" href="#get-pomo">Get Pomo</a>
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation"><span></span><span></span></button>
+    </nav>
+    <div class="mobile-overlay" id="mobile-navigation" hidden>
+      <nav aria-label="Mobile navigation"><a href="#why-pomo">Why Pomo</a><a href="#how-it-works">How it works</a><a href="#questions">Questions</a><a href="#get-pomo">Get Pomo</a></nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="mini-dial" aria-hidden="true"></span> A small app for a clearer mind</p>
+        <h1 id="hero-title">Less noise.<br>More focus.</h1>
+        <p class="hero-description">A quiet Pomodoro timer that lives in your Mac’s menu bar. Pick a session, find your rhythm, and get back to what matters.</p>
+        <a class="button hero-button" href="#get-pomo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 12.5c0-2 1.2-3 2.1-3.6-1.1-1.7-2.8-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.7 0-1.8-.9-3-.9-1.6 0-3 .9-3.8 2.2-1.6 2.8-.4 6.9 1.1 9.1.7 1.1 1.5 2.2 2.7 2.2 1.1-.1 1.5-.7 2.9-.7s1.8.7 3 .7c1.3 0 2-1.1 2.7-2.1.8-1.2 1.2-2.4 1.2-2.5-1.1-.5-2.7-1.5-2.7-3.4ZM15.2 5.7c.6-.8 1.1-1.9 1-3-1 .1-2.2.7-2.9 1.5-.6.7-1.2 1.8-1.1 2.9 1.1.1 2.3-.6 3-1.4Z" fill="currentColor"/></svg>Get Pomo for Mac</a>
+        <p class="hero-note">Free & open source <span aria-hidden="true">·</span> macOS 13 or later</p>
+      </div>
+
+      <div class="product-preview reveal" id="preview" aria-label="Interactive preview of the Pomo menu bar app">
+        <div class="mac-bar"><div class="mac-apps"><svg class="apple-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 12.5c0-2 1.2-3 2.1-3.6-1.1-1.7-2.8-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.7 0-1.8-.9-3-.9-1.6 0-3 .9-3.8 2.2-1.6 2.8-.4 6.9 1.1 9.1.7 1.1 1.5 2.2 2.7 2.2 1.1-.1 1.5-.7 2.9-.7s1.8.7 3 .7c1.3 0 2-1.1 2.7-2.1.8-1.2 1.2-2.4 1.2-2.5-1.1-.5-2.7-1.5-2.7-3.4ZM15.2 5.7c.6-.8 1.1-1.9 1-3-1 .1-2.2.7-2.9 1.5-.6.7-1.2 1.8-1.1 2.9 1.1.1 2.3-.6 3-1.4Z" fill="currentColor"/></svg><strong>Finder</strong><span>File</span><span>Edit</span><span>View</span></div>
+          <button class="status-button" id="demo-status" aria-expanded="true" aria-controls="demo-menu" aria-label="Toggle Pomo preview menu"><img src="assets/logo-mark.svg" width="16" height="16" alt=""><span id="demo-countdown">25:00</span><span class="status-stopwatch" id="status-stopwatch" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="14" r="8"/><path d="M12 6V3m-3 0h6m3 4 2-2m-8 9V9"/></svg><span id="demo-stopwatch">00:00</span></span></button>
+          <span class="mac-date" aria-hidden="true">Sun 10:24 AM</span>
+        </div>
+        <div class="desktop-space"><div class="desktop-message"><p>YOUR WORK, FRONT AND CENTER</p><h2>A little structure.<br>A lot more space.</h2><span>Everything you need, just a glance away.</span></div></div>
+        <div class="demo-menu" id="demo-menu">
+          <p class="menu-heading" id="demo-focus-count">Pomo · 0 focus sessions done</p>
+          <div class="preset-group" aria-label="Focus presets">
+            <button class="demo-preset" data-minutes="15" data-focus="true" aria-pressed="false"><span class="preset-check" aria-hidden="true"></span>Focus · 15 min</button>
+            <button class="demo-preset" data-minutes="25" data-focus="true" aria-pressed="true"><span class="preset-check" aria-hidden="true">✓</span>Focus · 25 min</button>
+            <button class="demo-preset" data-minutes="45" data-focus="true" aria-pressed="false"><span class="preset-check" aria-hidden="true"></span>Focus · 45 min</button>
+            <button class="demo-preset" data-minutes="60" data-focus="true" aria-pressed="false"><span class="preset-check" aria-hidden="true"></span>Focus · 60 min</button>
+          </div>
+          <div class="preset-group" aria-label="Break presets">
+            <button class="demo-preset" data-minutes="5" data-focus="false" aria-pressed="false"><span class="preset-check" aria-hidden="true"></span>Short Break · 5 min</button>
+            <button class="demo-preset" data-minutes="15" data-focus="false" aria-pressed="false"><span class="preset-check" aria-hidden="true"></span>Long Break · 15 min</button>
+          </div>
+          <div class="menu-actions" id="timer-controls"><button id="demo-pause">Pause Timer</button><button id="demo-stop">Stop Timer</button></div>
+          <div class="menu-actions"><p class="menu-heading">Stopwatch · <span id="menu-stopwatch">00:00</span></p><button id="demo-toggle-stopwatch">Start Stopwatch</button><button id="demo-reset-stopwatch" hidden>Reset Stopwatch</button></div>
+          <p class="preview-label">Interactive preview</p>
+        </div>
+        <p class="demo-notice" id="demo-notice" role="status" hidden></p>
+      </div>
+      <p class="preview-caption"><span class="caption-line" aria-hidden="true"></span> Try a preset above. It’s this simple on your Mac, too.</p>
+      <div class="proof-row" aria-label="Product highlights"><span>Built for macOS</span><span>Works entirely offline</span><span>No account needed</span></div>
+    </section>
+
+    <section class="benefits container" id="why-pomo" aria-labelledby="benefits-title">
+      <div class="section-intro reveal"><p class="eyebrow">A calmer way to get things done</p><h2 id="benefits-title">Good work needs<br>a little breathing room.</h2><p>Pomo gives your day a rhythm. And gives your attention back to the task in front of you.</p></div>
+      <div class="benefit-grid">
+        <article class="benefit-card reveal"><svg class="feature-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="7" width="22" height="18" rx="3"/><path d="M5 12h22M10 9.5h.1m3 0h.1M12 18h8"/></svg><span class="card-number">01 / LESS CLUTTER</span><h3>Keep your workspace yours.</h3><p>One small menu bar item. No extra window, no Dock icon, and no dashboard between you and your work.</p><div class="card-detail">A glance is all it takes.</div></article>
+        <article class="benefit-card reveal"><svg class="feature-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="17" r="10"/><path d="M16 17V11l5 3M13 3h6m-3 0v4m9 2 2-2"/></svg><span class="card-number">02 / YOUR OWN PACE</span><h3>Find your focus rhythm.</h3><p>Choose 15, 25, 45, or 60 minutes. Pause when life interrupts. Resume when you’re ready.</p><div class="duration-pills" aria-label="Four focus lengths"><span>15</span><span class="selected">25</span><span>45</span><span>60</span><small>MIN</small></div></article>
+        <article class="benefit-card reveal"><svg class="feature-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 10h17v9a6 6 0 0 1-6 6h-5a6 6 0 0 1-6-6Zm17 2h2a4 4 0 0 1 0 8h-3M9 6V3m6 3V3m6 3V3M5 29h21"/></svg><span class="card-number">03 / ROOM TO RESET</span><h3>Take the break you need.</h3><p>A gentle sound marks the finish. Step away for five or fifteen minutes. Start again on your terms.</p><div class="card-detail">Rest is part of the rhythm.</div></article>
+      </div>
+    </section>
+
+    <section class="tagline-section container" aria-label="Our approach to focus"><p class="eyebrow reveal">One thing at a time</p><h2 class="tagline" data-word-reveal>Focus on what matters.<br>Make room for what’s next.</h2><p class="tagline-note reveal">Your time is yours. Pomo just helps you make a little more of it.</p></section>
+
+    <section class="how-section container" id="how-it-works" aria-labelledby="how-title">
+      <div class="section-intro reveal"><p class="eyebrow">Simple from the first session</p><h2 id="how-title">A rhythm you can<br>come back to.</h2></div>
+      <div class="steps-grid"><article class="step reveal"><span class="step-number">1</span><h3>Choose your session.</h3><p>Click the timer in your menu bar. Pick the amount of time you want to give one thing.</p></article><article class="step reveal"><span class="step-number">2</span><h3>Give it your attention.</h3><p>The countdown stays in view while you work. The independent stopwatch can run alongside it.</p></article><article class="step reveal"><span class="step-number">3</span><h3>Pause. Breathe. Repeat.</h3><p>Pomo lets you know when you’re done. Choose a break, or begin your next session when it feels right.</p></article></div>
+    </section>
+
+    <section class="quiet-detail container reveal" aria-labelledby="quiet-title"><div class="quiet-icon"><img src="assets/icon-192.png" width="96" height="96" alt="Pomo’s orange timer app icon"></div><div><p class="eyebrow">Small by design</p><h2 id="quiet-title">Your attention is enough.</h2><p>Pomo works offline, asks for no account, and collects no analytics. Your sessions stay on your Mac and clear when you quit.</p></div><span class="native-stamp">Made for<br><strong>your Mac.</strong></span></section>
+
+    <section class="faq-section container" id="questions" aria-labelledby="faq-title"><div class="faq-intro reveal"><p class="eyebrow">A few things worth knowing</p><h2 id="faq-title">Clear from<br>the start.</h2><p>Small app. Straight answers.</p></div><div class="faq-list reveal">
+      <details><summary>Is Pomo free?<span aria-hidden="true">+</span></summary><p>Yes. Pomo is free and open source under the MIT license. There’s no subscription, account, or paid feature tier.</p></details>
+      <details><summary>Which Macs does it work on?<span aria-hidden="true">+</span></summary><p>Pomo requires macOS 13 Ventura or later. The source supports Apple silicon and Intel Macs. Release packaging can produce one universal app for both.</p></details>
+      <details><summary>How do I install it today?<span aria-hidden="true">+</span></summary><p>The current release is a source preview. Build it on your Mac using Apple’s Command Line Tools and the four commands below. A signed installer will be published after Apple release signing is configured.</p></details>
+      <details><summary>What happens when my Mac sleeps?<span aria-hidden="true">+</span></summary><p>A running timer includes time spent asleep. If it finishes during sleep, Pomo alerts you when your Mac wakes. A paused timer stays paused.</p></details>
+      <details><summary>Can the stopwatch run with a focus session?<span aria-hidden="true">+</span></summary><p>Yes. They run independently. Pausing or stopping one does not affect the other, and both remain visible in your menu bar.</p></details>
+      <details><summary>Does Pomo save or share my sessions?<span aria-hidden="true">+</span></summary><p>No. Pomo does not send data over the network or store a session history. The focus count and both timers reset when you quit the app.</p></details>
+    </div></section>
+
+    <section class="get-section container reveal" id="get-pomo" aria-labelledby="get-title"><div class="get-copy"><img src="assets/icon-192.png" width="80" height="80" alt=""><p class="eyebrow">A little less noise, starting today</p><h2 id="get-title">Make room<br>for deep work.</h2><p>Get the source preview. Build it once.<br>Keep a quieter rhythm close at hand.</p><a class="button button-light" href="https://github.com/hrithiksaini99/Pomo" target="_blank" rel="noopener noreferrer">Get Pomo on GitHub</a><span class="get-note">Free forever · macOS 13 or later</span></div><aside class="install-card" aria-labelledby="install-title"><div class="install-top"><span class="install-badge">SOURCE PREVIEW</span><span>v1.0.0</span></div><h3 id="install-title">A simple local install.</h3><p>Install Apple’s Command Line Tools with <code>xcode-select --install</code>, then run:</p><pre><code id="install-command">git clone https://github.com/hrithiksaini99/Pomo.git
+cd Pomo
+./build.sh --install
+open ~/Applications/Pomo.app</code></pre><button class="copy-button" id="copy-install">Copy install commands<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/></svg></button><p class="copy-status" id="copy-status" role="status"></p><p class="install-note">A notarized installer is the next release milestone.<br>No security settings need changing for a local build.</p></aside></section>
+  </main>
+
+  <footer class="site-footer container"><a class="brand" href="./"><img src="assets/logo-mark.svg" width="24" height="24" alt=""><span>Pomo</span></a><p>Made with care by <a href="https://github.com/hrithiksaini99">Hrithik Saini</a>.</p><nav aria-label="Footer navigation"><a href="https://github.com/hrithiksaini99/Pomo">Source</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav><small>© 2026 Pomo</small></footer>
+</body>
+</html>

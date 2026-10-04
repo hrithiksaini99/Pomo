@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pomo">
+  <rect x="1" y="1" width="62" height="62" rx="16" fill="#ed603a"/>
+  <rect x="27.3" y="12.3" width="9.4" height="3.1" rx="1.55" fill="#fff6e9"/>
+  <rect x="30.56" y="14" width="2.88" height="5.2" rx="1.1" fill="#fff6e9"/>
+  <circle cx="32" cy="33.4" r="15.3" fill="#fff6e9"/>
+  <path d="M32 24.3v9.1l7.4 4.4" fill="none" stroke="#ed603a" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
