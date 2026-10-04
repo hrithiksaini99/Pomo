@@ -6,6 +6,7 @@ on:
     paths:
       - 'general/website/**'
       - '.github/workflows/pages.yml'
+      - 'index.html'
   workflow_dispatch:
 
 permissions:
@@ -29,7 +30,7 @@ jobs:
       - name: Set up Pages
         uses: actions/configure-pages@v5
       - name: Upload website
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: general/website
       - name: Deploy website
